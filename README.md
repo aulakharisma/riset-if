@@ -4,7 +4,8 @@ Kendala utama yang dihadapi dalam pengembangan e-commerce saat ini adalah kurang
 ## Metode Penelitian ##
 Hybrid Filtering, yaitu model rekomendasi yang menggabungkan algoritma content based filtering dan collaborative filtering untuk saling melengkapi masing-masing kekurangan. Dimana kekurangan model content based filtering adalah keterbatasan rekomendasi hanya pada konten saja, dalam hal ini kita sebut produk, sementara algoritma collaborative filtering kurang efektif jika digunakan pada user baru karena sistem tidak memiliki data dari user tersebut sebelumnya (cold start). Algoritma hybrid filtering sudah banyak digunakan oleh platform-platform besar, seperti amazon, netflix, spotify, dll.
 
-Model hybrid yang digunakan mengacu pada paper yang ditulis oleh Anand Shanker pada tahun 2020 yang mengajukan model hybrid filtering baru dengan menggunakan 6 block. Yaitu Profile construction, content similarity finder, neighbor finder, items generator, items weight generator, dan final recommendation block. Setiap blok mempunyai fungsi khusus dan semuanya bekerja sama satu sama lain. Berikut merupakan cara kerja dari blok-blok ini:
+Model hybrid yang digunakan mengacu pada paper yang ditulis oleh Anand Shanker pada tahun 2020 yang mengajukan model hybrid filtering baru dengan menggunakan 6 block. Yaitu Profile construction, content similarity finder, neighbor finder, items generator, items weight generator, dan final recommendation block. Setiap blok mempunyai fungsi khusus dan semuanya bekerja sama satu sama lain. Berikut merupakan diagram dari model hybrid ini:
+![image](https://github.com/aulakharisma/riset-if/assets/74193184/66d51dc0-1fae-46b5-a26c-3b82ac2c3875)
 
 ### *Profile construction Block* (PC) ###
 Blok ini membuat profil untuk setiap pengguna dan item. Dalam studi kasus ecommerce, setiap penjual menyediakan keywords untuk menggambarkan properti barang yang akan dijual di website e-commerce. Blok PC membuat profil item berdasarkan konten dengan kata kunci yang ditetapkan yang disediakan oleh penjual. Setelah profil item dibuat, blok PC menggunakan profil item ini untuk membuat profil pengguna. Blok PC menemukan semua item yang digunakan oleh pengguna dan kemudian membuat profil pengguna dari kata kunci di profil item tersebut. Blok ini juga menyimpan peringkat item yang berbeda yang diberikan oleh pengguna target di profilnya.
@@ -28,3 +29,10 @@ Blok IWG menerima semua item yang mungkin direkomendasikan kepada pengguna targe
 ### *Final Recomendation Block* (FR) ###
 Blok ini menghasilkan rekomendasi akhir untuk pengguna target. Dibutuhkan input dari blok PC, IG dan IWG. Blok FR memprediksi peringkat semua item yang dihasilkan oleh blok IG. Pertama, ia menemukan kesamaan kosinus yang disesuaikan (Sim) dari item yang sudah dinilai oleh pengguna target dengan item yang dihasilkan oleh blok IG menggunakan persamaan 5.
 ![image](https://github.com/aulakharisma/riset-if/assets/74193184/80672089-243e-4c04-8648-cf947421e7ea)
+
+## Pengumpulan Data ##
+data yang digunakan yaitu data produk dari toko mina, dan 20 data transaksi user selama bulan Desember 2023
+
+## Jurnal Acuan ##
+Generating Items Recommendations by Fusing Content and UserItem based Collaborative Filtering (Tewari, Anand Shanker). 2020
+Generating Top-N Items Recommendation Set Using Collaborative, Content Based Filtering and Rating Variance (Tewari dkk). 2019
