@@ -1,12 +1,8 @@
-Topik : CBR dan NLP
+#Rancang Bangun E-commerce dengan Algoritma Hybrid Filtering Sebagai Sistem Rekomendasi#
+Kendala utama yang dihadapi dalam pengembangan e-commerce saat ini adalah kurangnya personalisasi dalam memberikan rekomendasi kepada pengguna. Penelitian ini bertujuan untuk merancang dan membangun sebuah platform e-commerce yang dilengkapi dengan sistem rekomendasi menggunakan algoritma hybrid filtering. Dalam konteks ini, algoritma hybrid filtering menggabungkan dua pendekatan utama, yaitu collaborative filtering dan content-based filtering, untuk meningkatkan akurasi dan relevansi rekomendasi produk kepada pengguna. Penelitian ini berfokus pada pengembangan sistem rekomendasi yang dapat memahami preferensi pengguna berdasarkan perilaku sebelumnya dan karakteristik produk. Dengan merancang dan membangun e-commerce yang menggunakan algoritma hybrid filtering, diharapkan dapat meningkatkan pengalaman belanja online pengguna, mempercepat proses pencarian produk yang relevan, dan secara efektif meningkatkan konversi penjualan di platform e-commerce tersebut.
 
-- Identifikasi persoalan praktis yang menurut anda perlu diselesaikan melalui penelitian :
-  
-  Pada saat bertanya di komunitas terbuka seperti stack overflow dll, perlu menunggu waktu beberapa saat sampai ada user lain yang menjawab pertanyaan tersebut, padahal mungkin di database sudah terdapat pertanyaan serupa diikuti jawaban-jawaban yang sudah verified. oleh karena itu, dilakukan penelitian yang dapat mencari pertanyaan yang serupa dari database untuk kemudian ditampilkan jawaban yang sudah verified tanpa perlu menunggu user lain menjawab pertanyaan tersebut. diperlukan juga sistem yang dapat menjawab multiple question yang masih relevan dengan pertanyaan di awal.
-Contoh multiple question :
-![hasil yang diharapkan](https://github.com/aulakharisma/riset-if/assets/74193184/b758f131-42ff-4825-b8a7-ccc9b6d15bc1)
+##Metode Penelitian##
 
-- metode yang digunakan di penelitian :
 
   bayesian semantic sebagai identifikasi per kata dan cbr sebagai pengambil keputusan. Bayesian semantic digunakan karena terdapat sebuah penelitian yang menunjukkan bahwa penggunaan metode bayes dalam semantic menghasilkan akurasi yang cukup tinggi.
   ![image](https://github.com/aulakharisma/riset-if/assets/74193184/1649c29b-38d0-4f14-9804-5267194bc076)
