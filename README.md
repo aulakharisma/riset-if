@@ -1,7 +1,7 @@
-#Rancang Bangun E-commerce dengan Algoritma Hybrid Filtering Sebagai Sistem Rekomendasi#
+# Rancang Bangun E-commerce dengan Algoritma Hybrid Filtering Sebagai Sistem Rekomendasi #
 Kendala utama yang dihadapi dalam pengembangan e-commerce saat ini adalah kurangnya personalisasi dalam memberikan rekomendasi kepada pengguna. Penelitian ini bertujuan untuk merancang dan membangun sebuah platform e-commerce yang dilengkapi dengan sistem rekomendasi menggunakan algoritma hybrid filtering. Dalam konteks ini, algoritma hybrid filtering menggabungkan dua pendekatan utama, yaitu collaborative filtering dan content-based filtering, untuk meningkatkan akurasi dan relevansi rekomendasi produk kepada pengguna. Penelitian ini berfokus pada pengembangan sistem rekomendasi yang dapat memahami preferensi pengguna berdasarkan perilaku sebelumnya dan karakteristik produk. Dengan merancang dan membangun e-commerce yang menggunakan algoritma hybrid filtering, diharapkan dapat meningkatkan pengalaman belanja online pengguna, mempercepat proses pencarian produk yang relevan, dan secara efektif meningkatkan konversi penjualan di platform e-commerce tersebut.
 
-##Metode Penelitian##
+## Metode Penelitian ##
 
 
   bayesian semantic sebagai identifikasi per kata dan cbr sebagai pengambil keputusan. Bayesian semantic digunakan karena terdapat sebuah penelitian yang menunjukkan bahwa penggunaan metode bayes dalam semantic menghasilkan akurasi yang cukup tinggi.
