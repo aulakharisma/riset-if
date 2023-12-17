@@ -1,38 +1,73 @@
-# Rancang Bangun E-commerce dengan Algoritma Hybrid Filtering Sebagai Sistem Rekomendasi #
-Kendala utama yang dihadapi dalam pengembangan e-commerce saat ini adalah kurangnya personalisasi dalam memberikan rekomendasi kepada pengguna. Penelitian ini bertujuan untuk merancang dan membangun sebuah platform e-commerce yang dilengkapi dengan sistem rekomendasi menggunakan algoritma hybrid filtering. Dalam konteks ini, algoritma hybrid filtering menggabungkan dua pendekatan utama, yaitu collaborative filtering dan content-based filtering, untuk meningkatkan akurasi dan relevansi rekomendasi produk kepada pengguna. Penelitian ini berfokus pada pengembangan sistem rekomendasi yang dapat memahami preferensi pengguna berdasarkan perilaku sebelumnya dan karakteristik produk. Dengan merancang dan membangun e-commerce yang menggunakan algoritma hybrid filtering, diharapkan dapat meningkatkan pengalaman belanja online pengguna, mempercepat proses pencarian produk yang relevan, dan secara efektif meningkatkan konversi penjualan di platform e-commerce tersebut.
+# Perbandingan Performa Collaborative Filtering dan Hybrid Filtering untuk Sistem Rekomendasi Film #
+Dalam era digital saat ini, industri hiburan mengalami perkembangan pesat, khususnya dalam penyediaan layanan streaming film. Untuk meningkatkan pengalaman pengguna, sistem rekomendasi menjadi elemen kunci yang memastikan pengguna mendapatkan konten yang sesuai dengan preferensi mereka. Dua pendekatan utama yang digunakan dalam sistem rekomendasi adalah collaborative filtering (CF) dan hybrid filtering (HF).
+Meskipun collaborative filtering telah berhasil dalam merekomendasikan item berdasarkan perilaku pengguna serupa, masih ada beberapa kendala, seperti cold start problem dan sparsity. Di sisi lain, hybrid filtering menggabungkan berbagai metode untuk mengatasi kelemahan masing-masing, menciptakan potensi untuk meningkatkan akurasi rekomendasi.
+Penelitian ini bertujuan untuk membandingkan efektivitas algoritma collaborative filtering dan hybrid filtering dalam konteks sistem rekomendasi film. Beberapa aspek yang menjadi fokus penelitian melibatkan akurasi rekomendasi, penanganan masalah cold start, dan kinerja sistem pada dataset yang memiliki tingkat sparsity yang berbeda.
 
-## Metode Penelitian ##
-Hybrid Filtering, yaitu model rekomendasi yang menggabungkan algoritma content based filtering dan collaborative filtering untuk saling melengkapi masing-masing kekurangan. Dimana kekurangan model content based filtering adalah keterbatasan rekomendasi hanya pada konten saja, dalam hal ini kita sebut produk, sementara algoritma collaborative filtering kurang efektif jika digunakan pada user baru karena sistem tidak memiliki data dari user tersebut sebelumnya (cold start). Algoritma hybrid filtering sudah banyak digunakan oleh platform-platform besar, seperti amazon, netflix, spotify, dll.
+## Collaborative Filtering(CF) ##
+Collaborative Filtering merupakan pendekatan yang berdasarkan pada pola rating yang diberikan oleh user terhadap film yang sudah ditonton. CF memiliki 2 fase utama untuk menghasilkan rekomendasi, yaitu similaritas film, dan prediksi rating pada film. berikut merupakan alur dalam pendekatan CF. <br>
+![image](https://github.com/aulakharisma/riset-if/assets/74193184/cc12bea7-81ee-4a9c-8a3f-a31c009ea709)
+### 1. Menghitung Similaritas Film ###
+similaritas film merupakan pendekatan untuk menghitung similaritas antara film berdasarkan rating pada film. algoritma yang diimplementasikan adalah adjusted-cosine similarity, fungsi umum yang digunakan di pendekatan collaborative filtering yaitu : <br>
+![image](https://github.com/aulakharisma/riset-if/assets/74193184/9d0c7784-d13f-4ea8-9ed8-a316c7d6f562) <br>
+Input    : Data Rating Film<br>
+Proses   :
+   - menghitung rata-rata rating dari masing-masing user
+   - mendapatkan list user yang sudah memberi ratinng pada film
+   - implementasi algoritma ahjusted-cosine similarity untuk mendapatkan similaritas antar film
+     
+<br>Output    : matrix similaritas film
 
-Model hybrid yang digunakan mengacu pada paper yang ditulis oleh Anand Shanker pada tahun 2020 yang mengajukan model hybrid filtering baru dengan menggunakan 6 block. Yaitu Profile construction, content similarity finder, neighbor finder, items generator, items weight generator, dan final recommendation block. Setiap blok mempunyai fungsi khusus dan semuanya bekerja sama satu sama lain. Berikut merupakan diagram dari model hybrid ini:
-![image](https://github.com/aulakharisma/riset-if/assets/74193184/66d51dc0-1fae-46b5-a26c-3b82ac2c3875)
+### 2. Prediksi Rating dan Rekomendasi Film ###
+prediksi rating adalah tahap untuk memprediksi rating yang telah diberikan oleh user target untuk film yang belum diberi rating. hasil prediksi ini kemudian diurutkan secara descending untuk mengahasilkan list film yang direkomendasikan.
+prediksi rating film untuk user target dapat dihitung dengan rumus berikut : <br>
+![image](https://github.com/aulakharisma/riset-if/assets/74193184/09e51708-fb70-484b-be7a-2f196277d447) <br>
+   Input      : matrix similaritas film <br>
+   Proses     : <br>
+   - Tentukan jumlah ݇k untuk menentukan ukuran film yang serupa.
+   - Menciptakan daftar ݇k film yang memiliki kesamaan tertinggi dengan setiap film.
+   - implementasikan fungsi prediksi (persamaan nomor 2) untuk menghitung peringkat film yang belum dinilai
 
-### *Profile construction Block* (PC) ###
-Blok ini membuat profil untuk setiap pengguna dan item. Dalam studi kasus ecommerce, setiap penjual menyediakan keywords untuk menggambarkan properti barang yang akan dijual di website e-commerce. Blok PC membuat profil item berdasarkan konten dengan kata kunci yang ditetapkan yang disediakan oleh penjual. Setelah profil item dibuat, blok PC menggunakan profil item ini untuk membuat profil pengguna. Blok PC menemukan semua item yang digunakan oleh pengguna dan kemudian membuat profil pengguna dari kata kunci di profil item tersebut. Blok ini juga menyimpan peringkat item yang berbeda yang diberikan oleh pengguna target di profilnya.
+   <br>Output : Prediksi rating film
 
-### *Content Similarity Finder Block* (CSF) ###
-Blok CSF menemukan pengguna serupa lainnya yang memiliki minat serupa dengan pengguna target berdasarkan profil pengguna yang dibuat oleh blok PC(a). Blok ini mencari kesamaan berdasarkan kosinus antara pengguna target dan pengguna lain menggunakan persamaan 1.
-![image](https://github.com/aulakharisma/riset-if/assets/74193184/deaf867a-eb1d-4517-8ddb-4fdf509fa7cf)
+## Hybrid Filtering ##
+hybrid filtering merupakan pndekatan yang menambahkan manfaat Content based filtering pada pendekatan cillaborative filtering. oleh karena itu, pendekatan ini juga membutuhkan data film dan proses tambahan.
+Pendekatan Hybrid filtering memiliki 4 fase utama untuk menghasilkan rekomendasi film, yaitu text processing, term weighting, movie clustering, dan collaborative filtering. proses tersebut digambarkan dalam digram berikut. <br>
+![image](https://github.com/aulakharisma/riset-if/assets/74193184/20628d27-769d-4dd7-9ce8-7460eb7419ab) <br>
+### 1. Text Prepprocessing ###
+Pra-pemrosesan teks adalah teknik untuk mengubah teks tak terstruktur menjadi bentuk yang lebih mudah dibaca untuk merepresentasikan film. disini akan diterapkan pra-pemrosesan teks untuk mengubah data film menjadi daftar istilah dalam setiap film. Data film mencakup judul dan sinopsis film. disini akan digunakan Porter Stemmer karena merupakan algoritma stemming yang paling umum digunakan untuk bahasa Inggris. <br>
+Input     : data judul film dan sinopsis <br>
+Proses    : <br>
+   - case folding, mengubah semua huruf menjadi huruf kecil(lowercase)
+   - tokenisasi, memisahkan per kata, dari data yang sudah diolah diproses case folding.
+   - filtering, menghapus stop words (cth: kata sambung, dan kata yang kurang memiliki makna) dari hasil tokenisasi, sehingga yang tersisa hanya kata yang bermakna
+   - stemming, mendapat akar setiap kata dalam himpunan teks yang telah difilter.
 
-### *Neighbour Finder Block* (NF) ###
-Blok ini mengekstrak peringkat yang diberikan oleh pengguna target ke item berbeda dengan bantuan blok PC. Blok NF kemudian menemukan kesamaan pengguna target dengan pengguna lain yang tersedia di website berdasarkan rating. Blok NF menggunakan rumus korelasi Pearson untuk mencari kesamaan antar pengguna, sebagaimana ditunjukkan pada persamaan 2.
-![image](https://github.com/aulakharisma/riset-if/assets/74193184/d45c4ddb-1418-43f7-b7d1-a08556015614)
-Blok NF dengan bantuan blok CSF, menemukan semua pengguna serupa yang memiliki kesamaan konten dengan pengguna target lebih besar dari ambang Kesamaan Konten, yang disediakan oleh pakar domain. Setelah pengguna serupa dipilih, blok NF kemudian menemukan kesamaan peringkat berdasarkan peringkat antara pengguna target dan pengguna serupa ini, dan memilih semua pengguna yang memiliki kesamaan peringkat lebih besar dari ambang batas Kesamaan Peringkat, yang sekali lagi disediakan oleh pakar domain. Akhirnya, blok NF menghasilkan daftar tetangga potensial dari pengguna target.
+<br>Output    : Daftar frasa atau istilah yang terdapat dalam setiap film.
+### 2. Pembobotan TF-IDF ###
+Term weighting adalah teknik yang umum digunakan dalam studi informasi retrieval yang menghitung bobot setiap istilah dalam setiap dokumen. disini akan diterapkan teknik pembobotan TF-IDF untuk menghitung bobot setiap istilah dalam setiap film berdasarkan daftar istilah dalam setiap film. <br>
+input     : Daftar frasa atau istilah yang terdapat dalam setiap film <br>
+proses    : 
+   - Term Frequency (TF), mengukur seberapa sering suatu kata kunci muncul dalam suatu item atau dokumen. contoh, Jika kata "movie" muncul 5 kali dalam suatu ulasan film yang terdiri dari 100 kata, maka TF untuk kata "movie" dalam ulasan tersebut adalah 0.05.
+   - Inverse Document Frequency (IDF),  mengukur seberapa unik atau jarang suatu kata kunci muncul di seluruh dataset. contoh, Jika ada 1000 dokumen dalam dataset dan kata "movie" muncul di 100 dokumen, maka IDF untuk kata "movie" adalah 
+log(1000/100)
+   - TF-IDF, produk dari TF dan IDF dan digunakan untuk memberikan bobot pada suatu kata kunci dalam suatu dokumen terkait dengan keseluruhan dataset. contoh, Jika TF untuk kata "movie" dalam suatu dokumen adalah 0.05 dan IDF untuk kata "movie" adalah 2, maka TF-IDF untuk kata "movie" dalam dokumen tersebut adalah 0.1.
+     
+<br>Output     : matrix pembobotan istilah
+### 3. K-Means Clustering ###
+Clustering adalah teknik yang mengelompokkan data yang dianggap mirip ke dalam klaster yang sama. Proses ini diperlukan karena ukuran data film yang besar dapat menyebabkan masalah skalabilitas. disini akan diterapkan teknik pengelompokan K-Means untuk mengelompokkan film berdasarkan matriks bobot istilah-film. Teknik K-Means mengelompokkan data berdasarkan jaraknya ke centroid.<br>
+Input     : Jumlah kluster, matrix pembobotan istilah <br>
+proses    :
+   - Inisialisasi nilai C centroid secara acak
+   - Hitung jarak setiap film ke setiap titik centroid. Tentukan setiap film ke centroid terdekatnya.
+   - Perbarui setiap centroid dengan mengambil rata-rata dari poin-poin film yang diassign ke klaster terkait.
+   - ulangi step 2 dan 3
+     
+<br>output   : C cluster
 
-### *Items Generator Block* (IG) ###
-Blok IG mengambil masukan dari blok NF dan memilih semua tetangga dari pengguna target. IG kemudian memilih semua item yang dinilai oleh tetangga, yang tidak dinilai oleh pengguna target. Ini menciptakan daftar item yang mungkin direkomendasikan kepada pengguna target.
+### Collaborative Filtering ###
+Daftar rekomendasi film dalam pendekatan berbasis Hybrid dihasilkan dengan menerapkan pendekatan berbasis Collaborative Filtering (sebagaimana yang sudah dijelaskan sebelumnya). Perlu diperhatikan bahwa kesamaan film dihitung hanya antara film-film dalam klaster yang sama.
 
-### *Items Weight Generator Block* (IWG) ###
-Blok IWG menerima semua item yang mungkin direkomendasikan kepada pengguna target dari blok IG dan kemudian menghitung dua jenis bobot untuk masing-masing item tersebut. Pertama, ia menghitung bobot spesifik item pengguna target yang dipersonalisasi, lalu menghitung bobot item umum. Nilai bobot spesifik item pengguna target yang dipersonalisasi berbeda untuk setiap pasangan item pengguna dan dihitung menggunakan persamaan 3.
-![image](https://github.com/aulakharisma/riset-if/assets/74193184/216518e5-9bba-41a9-ace9-6faf014fb202)
+## Dataset ##
+Dataset MovieLens yang diambil dari kaggle.com yang kemudian dilakukan filtrasi hanya kepada film yang memiliki judul dan sinopsis yang lengkap. data saat ini yang digunakan berisi 671 user, 3290 film, dan 42023 rating<br>
+https://www.kaggle.com/datasets/snehal1409/movielens
 
-### *Final Recomendation Block* (FR) ###
-Blok ini menghasilkan rekomendasi akhir untuk pengguna target. Dibutuhkan input dari blok PC, IG dan IWG. Blok FR memprediksi peringkat semua item yang dihasilkan oleh blok IG. Pertama, ia menemukan kesamaan kosinus yang disesuaikan (Sim) dari item yang sudah dinilai oleh pengguna target dengan item yang dihasilkan oleh blok IG menggunakan persamaan 5.
-![image](https://github.com/aulakharisma/riset-if/assets/74193184/80672089-243e-4c04-8648-cf947421e7ea)
-
-## Pengumpulan Data ##
-data yang digunakan yaitu data produk dari toko mina, dan 20 data transaksi user selama bulan Desember 2023
-
-## Jurnal Acuan ##
-Generating Items Recommendations by Fusing Content and UserItem based Collaborative Filtering (Tewari, Anand Shanker). 2020
-Generating Top-N Items Recommendation Set Using Collaborative, Content Based Filtering and Rating Variance (Tewari dkk). 2019
