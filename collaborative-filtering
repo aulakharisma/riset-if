@@ -1,0 +1,8 @@
+# Collaborative Filtering (CF) #
+Merupakan algoritma yang memberikan rekomendasi berdasarkan skor dari sekumpulan pengguna atau item yang mirip, yang dikenal dengan konsep ketetanggaan(neighbor). Collaborative filtering merupakan salah satu algoritma yang populer digunakan sebagai sistem rekomendasi pada e-commerce terkenal seperti netflix dan amazon. CF dibagi menjadi dua kategori berdasarkan jenis algoritma yang digunakan untuk memprediksi preferensi pengguna, yaitu :
+1. Memory Based
+menggunakan matrix penilaian item pengguna dan algoritma KNN untuk mengidentifikasi tetangga sekitar pengguna dan memprediksi preferensi mereka. metode yang digunakan seperti Pearson's correlation coefficient dan KNN
+2. Model Based
+sistem ini memproses data profil pengguna menggunakan metode seperti segmentasi untuk memberikan rekomendasi, yang mengarah pada perbaikan dalam perhitungan
+
+meskipun cukup populer dan sukses dalam memberikan rekomendasi, metode CF masih memiliki beberapa keterbatasan, seperti cold start, dimana sistem tidak dapat memberikan rekomendasi kepada user sampai beberapa user membeli item tersebut. Istilah user’s cold start merujuk pada seorang user yang sudah bergabung cukup lama pada sebuah sistem namun tidak terdapat cukup banyak informasi mengenai user tersebut.
